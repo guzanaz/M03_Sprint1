@@ -19,9 +19,30 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class SlotsMachines {
+	
+	
 	static VirtualMachine[] espacio;// espacio disponible para máquinas
 	int num;// para asignar el índice de VM al array espacio
 
+	// ------------------------------------------------------------------------//
+	// ------------------------- Métodos Constructores ------------------------//
+	// ------------------------------------------------------------------------//
+	public SlotsMachines() {
+
+	}
+
+	//
+	public SlotsMachines(int num) {
+		// inicializamos la llargada del array
+		this.espacio = new VirtualMachine[num];
+		// iniciar el valor del índice
+		this.num = num;
+
+		// inicializamos los valores del array a null para sobreescribirlos
+//		for (int i = 0; i < num; i++) {
+//			espacio[i] = new VirtualMachine();
+//		}
+	}
 	// ------------------------------------------------------------------------//
 	// ---------------------------- Métodos get&set ---------------------------//
 	// ------------------------------------------------------------------------//
@@ -54,25 +75,6 @@ public class SlotsMachines {
 		this.num = num;
 	}
 
-	// ------------------------------------------------------------------------//
-	// ------------------------- Métodos Constructores ------------------------//
-	// ------------------------------------------------------------------------//
-	public SlotsMachines() {
-
-	}
-
-	//
-	public SlotsMachines(int num) {
-		// inicializamos la llargada del array
-		this.espacio = new VirtualMachine[num];
-		// iniciar el valor del índice
-		this.num = num;
-
-		// inicializamos los valores del array a null para sobreescribirlos
-		for (int i = 0; i < num; i++) {
-			espacio[i] = new VirtualMachine();
-		}
-	}
 
 	/**
 	 * Método toString por default permite hacer pruebas
