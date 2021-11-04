@@ -31,18 +31,15 @@ public class SlotsMachines {
 
 	}
 
-	//
+	// Constructor con tamaño
 	public SlotsMachines(int num) {
 		// inicializamos la llargada del array
 		this.espacio = new VirtualMachine[num];
 		// iniciar el valor del índice
 		this.num = num;
-
-		// inicializamos los valores del array a null para sobreescribirlos
-//		for (int i = 0; i < num; i++) {
-//			espacio[i] = new VirtualMachine();
-//		}
 	}
+	
+	
 	// ------------------------------------------------------------------------//
 	// ---------------------------- Métodos get&set ---------------------------//
 	// ------------------------------------------------------------------------//
@@ -120,7 +117,6 @@ public class SlotsMachines {
 		System.out.println("---------------------------------------------------");
 		System.out.println("|                " + num2 + " Espai/s Creats               |");
 		System.out.println("---------------------------------------------------");
-//		nuevo.toStringFormat();
 
 	}
 
@@ -133,7 +129,7 @@ public class SlotsMachines {
 	 */
 	public static void addMV() {
 		for (int i = 0; i < espacio.length; i++) {
-			if (espacio[i].getVm_id() == null) {
+			if (espacio[i] == null) {
 				espacio[i] = VirtualMachine.createMV();
 				System.out.println("---------------");
 				System.out.println("MV CREAT...");
@@ -176,14 +172,6 @@ public class SlotsMachines {
 				if (espacio[i].getVm_id().equals(toDelete)) { // No había que hacer equals con los strings??
 					espacio[i] = (null);
 				}
-//				espacio[i].setUsuario("null");
-//				espacio[i].setName("null");
-//				espacio[i].setOs("null");
-//				espacio[i].setOs_version("null");
-//				espacio[i].setRam_size("null");
-//				espacio[i].setSsd_size("null");
-//				espacio[i].setDescription("null");
-//				espacio[i].setPower_on(false);
 				break;
 			}
 		}
@@ -195,7 +183,6 @@ public class SlotsMachines {
 		System.out.println("|     Les Teues Máquines Vituals     |");
 		System.out.println("--------------------------------------");
 		printMvs();
-
 		return;
 	}
 
