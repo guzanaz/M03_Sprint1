@@ -155,6 +155,7 @@ public class SlotsMachines {
 	 */
 	public static void printMvs() {
 		for (int i = 0; i < espacio.length; i++) {
+			System.out.println(espacio[i].getVm_id());
 			if (espacio[i].getVm_id() != null) {
 				System.out.println(espacio[i].toString());
 			}
@@ -173,8 +174,8 @@ public class SlotsMachines {
 		System.out.println("--------------------------------------");
 		toDelete=sc.nextLine();
 		for (int i = 0; i < espacio.length; i++) {
-			if (espacio[i].getVm_id() == toDelete) {  // No había que hacer equals con los strings??
-				espacio[i].setVm_id("null");
+			if (espacio[i].getVm_id().equals(toDelete)) {  // No había que hacer equals con los strings??
+				espacio[i].setVm_id(null);
 				espacio[i].setUsuario("null");
 				espacio[i].setName("null");
 				espacio[i].setOs("null");
