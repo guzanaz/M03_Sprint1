@@ -90,7 +90,7 @@ public class SlotsMachines {
 	 * @param void
 	 * @return void
 	 */
-	public void toStringFormat() {  // x_D se llama toString... y es void
+	public void toStringFormat() { // x_D se llama toString... y es void
 		for (int i = 0; i < num; i++) {
 			espacio[i] = new VirtualMachine();
 			System.out.print(i + 1 + "." + espacio[i].toString());
@@ -99,9 +99,9 @@ public class SlotsMachines {
 	}
 
 	/**
-	 * Método crearEspai(). 
-	 * Permite asignar el índice del array que guardará las MV.
+	 * Método crearEspai(). Permite asignar el índice del array que guardará las MV.
 	 * índice del array = total de mv posibles de almacenar.
+	 * 
 	 * @param void
 	 * @return void
 	 */
@@ -123,10 +123,9 @@ public class SlotsMachines {
 	}
 
 	/**
-	 * Método addMV(). 
-	 * Recorre los índices del array espacio para mv.
-	 * Se detiene en el índice disponible.
-	 * Llama al método createMV().
+	 * Método addMV(). Recorre los índices del array espacio para mv. Se detiene en
+	 * el índice disponible. Llama al método createMV().
+	 * 
 	 * @param void
 	 * @return void
 	 */
@@ -143,64 +142,60 @@ public class SlotsMachines {
 		}
 		return;
 	}
-	
-	
+
 	/**
-	 * Método printMvs(). 
-	 * Recorre los índices del array espacio para mv.
-	 * Identifica los índices con datos personalizados.
-	 * Imprime una lista de las MV creadas.
+	 * Método printMvs(). Recorre los índices del array espacio para mv. Identifica
+	 * los índices con datos personalizados. Imprime una lista de las MV creadas.
+	 * 
 	 * @param void
 	 * @return void
 	 */
 	public static void printMvs() {
 		for (int i = 0; i < espacio.length; i++) {
-			System.out.println(espacio[i].getVm_id());
-			if (espacio[i].getVm_id() != null) {
+			if (espacio[i] != null) {
 				System.out.println(espacio[i].toString());
 			}
 		}
 		return;
 	}
-	
+
 	public static void deleteMV() {
 		String toDelete;
 		@SuppressWarnings("resource")
-		Scanner sc= new Scanner(System.in);
+		Scanner sc = new Scanner(System.in);
 		printMvs();
 		System.out.println("---------------------------------------");
 		System.out.println("|          Ingressa la VM Id          |");
 		System.out.println("|   de la màquina que vols eliminar   |");
 		System.out.println("--------------------------------------");
-		toDelete=sc.nextLine();
+		toDelete = sc.nextLine();
 		for (int i = 0; i < espacio.length; i++) {
-			if (espacio[i].getVm_id().equals(toDelete)) {  // No había que hacer equals con los strings??
-				espacio[i].setVm_id(null);
-				espacio[i].setUsuario("null");
-				espacio[i].setName("null");
-				espacio[i].setOs("null");
-				espacio[i].setOs_version("null");
-				espacio[i].setRam_size("null");
-				espacio[i].setSsd_size("null");
-				espacio[i].setDescription("null");
-				espacio[i].setPower_on(false);
+			if (espacio[i] != null) {
+				if (espacio[i].getVm_id().equals(toDelete)) { // No había que hacer equals con los strings??
+					espacio[i] = (null);
+				}
+//				espacio[i].setUsuario("null");
+//				espacio[i].setName("null");
+//				espacio[i].setOs("null");
+//				espacio[i].setOs_version("null");
+//				espacio[i].setRam_size("null");
+//				espacio[i].setSsd_size("null");
+//				espacio[i].setDescription("null");
+//				espacio[i].setPower_on(false);
 				break;
 			}
 		}
 		System.out.println("--------------------------------------");
-		System.out.println("| Máquina Vitual VM Id"+ toDelete +"|");
+		System.out.println("| Máquina Vitual VM Id" + toDelete + "|");
 		System.out.println("|          esborrada amb èxit         |");
 		System.out.println("--------------------------------------");
 		System.out.println("--------------------------------------");
 		System.out.println("|     Les Teues Máquines Vituals     |");
 		System.out.println("--------------------------------------");
 		printMvs();
-		
-		
+
 		return;
 	}
-	
-	
 
 	/**
 	 * Método main de la clase SlotsMachines para hacer pruebas
