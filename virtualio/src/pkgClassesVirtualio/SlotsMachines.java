@@ -90,7 +90,7 @@ public class SlotsMachines {
 	 * @param void
 	 * @return void
 	 */
-	public void toStringFormat() {
+	public void toStringFormat() {  // x_D se llama toString... y es void
 		for (int i = 0; i < num; i++) {
 			espacio[i] = new VirtualMachine();
 			System.out.print(i + 1 + "." + espacio[i].toString());
@@ -173,7 +173,7 @@ public class SlotsMachines {
 		System.out.println("--------------------------------------");
 		toDelete=sc.nextLine();
 		for (int i = 0; i < espacio.length; i++) {
-			if (espacio[i].getVm_id() == toDelete) {
+			if (espacio[i].getVm_id() == toDelete) {  // No había que hacer equals con los strings??
 				espacio[i].setVm_id("null");
 				espacio[i].setUsuario("null");
 				espacio[i].setName("null");
