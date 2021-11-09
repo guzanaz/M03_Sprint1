@@ -89,7 +89,7 @@ public class SlotsMachines {
 	 * @param void
 	 * @return void
 	 */
-	public void toStringFormat() { // x_D se llama toString... y es void
+	public void toStringFormat() {
 		for (int i = 0; i < num; i++) {
 			espacio[i] = new VirtualMachine();
 			System.out.print(i + 1 + "." + espacio[i].toString());
@@ -98,7 +98,8 @@ public class SlotsMachines {
 	}
 
 	/**
-	 * Método crearEspai(). Permite asignar el índice del array que guardará las MV.
+	 * Método crearEspai(). 
+	 * Permite asignar el índice del array que guardará las MV.
 	 * índice del array = total de mv posibles de almacenar.
 	 * 
 	 * @param void
@@ -157,8 +158,9 @@ public class SlotsMachines {
 		return;
 	}
 
-	public static void deleteMV() {
+	public static VirtualMachine[] deleteMV() {
 		String toDelete;
+		VirtualMachine[] newArr = null;
 		@SuppressWarnings("resource")
 		Scanner sc = new Scanner(System.in);
 		printMvs();
@@ -167,23 +169,23 @@ public class SlotsMachines {
 		System.out.println("|   de la màquina que vols eliminar   |");
 		System.out.println("--------------------------------------");
 		toDelete = sc.nextLine();
-		for (int i = 0; i < espacio.length; i++) {
-			if (espacio[i] != null) {
-				if (espacio[i].getVm_id().equals(toDelete)) { // No había que hacer equals con los strings??
-					espacio[i] = (null);
-				}
+		for (int i = 0; i < espacio.length-1; i++) {
+				if (espacio[i].getVm_id().equals(toDelete)) { 
+					newArr = new VirtualMachine[espacio.length - 1];
+					for(int index = 0; index < i; index++){
+	                    newArr[index] = espacio[index];
+	                }
+					for(int j = i; j < espacio.length - 1; j++){
+	                    newArr[j] = espacio[j+1];
+	                }
 				break;
-			}
+				}
 		}
-		System.out.println("--------------------------------------");
-		System.out.println("| Máquina Vitual VM Id" + toDelete + "|");
-		System.out.println("|          esborrada amb èxit         |");
-		System.out.println("--------------------------------------");
+		
 		System.out.println("--------------------------------------");
 		System.out.println("|     Les Teues Máquines Vituals     |");
 		System.out.println("--------------------------------------");
-		printMvs();
-		return;
+		return newArr;
 	}
 
 	/**

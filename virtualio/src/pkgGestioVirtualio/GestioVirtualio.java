@@ -78,7 +78,11 @@ public class GestioVirtualio {
 				System.out.println("--------------------------------");
 				System.out.println("   [D]Eliminar Màquina Virtual    ");
 				System.out.println("--------------------------------");
+				VirtualMachine newArr=new VirtualMachine();
 				SlotsMachines.deleteMV();
+				newArr.toString();
+				
+				
 				break;
 
 			case 'X':
