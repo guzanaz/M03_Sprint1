@@ -258,9 +258,7 @@ public class VirtualMachine {
 	
 	System.out.print(conDatos.toString());
 	
-	System.out.print(sinDatos.toString());
-
-	
+	System.out.print(sinDatos.toString());	
 	
 	}
 
