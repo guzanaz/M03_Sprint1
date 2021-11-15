@@ -122,6 +122,7 @@ public class SlotsMachines {
 
 	public static void deleteMV(String toDelete) {
 		VirtualMachine[] newArr = new VirtualMachine[espacio.length - 1];
+		System.out.println("Orden de eliminar " + toDelete);
 		for (int i = 0; i < espacio.length-1; i++) {
 				if (espacio[i].getVm_id().equals(toDelete)) { 
 					

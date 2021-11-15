@@ -21,9 +21,9 @@ class GestioVirtualioTest {
 	}
 	
 	@Test
-	void test() {
+	void test2() {
 		setUp();
 		GestioVirtualio.deleteMV();
-	}
+		}
 
 }

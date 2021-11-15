@@ -42,46 +42,35 @@ public class GestioVirtualio {
 			switch (opcio) {
 
 			case 'C':
-				System.out.println("----------------------------------");
-				System.out.println("|     [C]Nova Màquina Virutal    |");
-				System.out.println("----------------------------------");
+				printHeader("[C] Nova Màquina Virutal");
 				SlotsMachines.addMV();
 				break;
+				
 			case 'R':
-				System.out.println("--------------------------------");
-				System.out.println("  [R]Llistar Màquines Virtuals  ");
-				System.out.println("--------------------------------");
+				printHeader("[R] Llistar Màquines Virtuals");
 				SlotsMachines.printMvs();
 				break;
 
 			case 'U':
-				System.out.println("--------------------------------");
-				System.out.println("   [U]Editar Màquina Virtual    ");
-				System.out.println("--------------------------------");
+				printHeader("[U] Editar Màquina Virtual");
 				
 				break;
 
 			case 'D':
-				System.out.println("--------------------------------");
-				System.out.println("   [D]Eliminar Màquina Virtual    ");
-				System.out.println("--------------------------------");
+				printHeader("[D] Eliminar Màquina Virtual");
 				deleteMV();
 				
 				break;
 
 			case 'X':
-				System.out.println("--------------------------------");
-				System.out.println("           [X]Sortir!           ");
-				System.out.println("--------------------------------");
+				printHeader("[X] Sortir!");
 				System.out.println("     Fi del programa. Adeu!     ");
 				System.out.println("--------------------------------");
 				sortir = true;
 				break;
 
 			default:
-				System.out.println("\n-----------------------------------------");
-				System.out.println("| COMPTE! has d'ingressar una opció vàlida!|");
-				System.out.println("-----------------------------------------\n");
+				printHeader("COMPTE! has d'ingressar una opció vàlida!");
 				sortir = false;
 			}
 		} while (sortir == false);
@@ -96,22 +85,18 @@ public class GestioVirtualio {
 	 * @return variable tipo char (opción seleccionada)
 	 */
 	public static char menu(String[] opcions) {
-		System.out.println("-----------------------------");
-		System.out.println("|       VIRTUALIO MENU      |");
-		System.out.println("-----------------------------");
+		printHeader("VIRTUALIO MENU");
 		for (int i = 0; i < opcions.length; i++) {
 			System.out.println(opcions[i]);
 		}
 		// Preguntamos qué opción seleccionarán
-		System.out.println("-----------------------------");
-		System.out.println("|       QUÉ VOLS FER?       |");
-		System.out.println("-----------------------------");
+		printHeader("QUÈ VOLS FER?");
 		System.out.println("    [ingressa una opció]   ");
-
-		// entrada por teclado
-		sc = new Scanner(System.in);
+		
 		// guardamos la entrada en opcio
-		char opcio1 = sc.next().toUpperCase().charAt(0);
+		String tmpInput = sc.nextLine();
+		char opcio1 = tmpInput.toUpperCase().charAt(0);
+		
 		
 		// retornamos opcio al main
 		return opcio1;
@@ -122,16 +107,21 @@ public class GestioVirtualio {
 	public static void deleteMV() {
 		String toDelete;	
 		SlotsMachines.printMvs();
-		System.out.println("---------------------------------------");
-		System.out.println("|          Ingressa la VM Id          |");
-		System.out.println("|   de la màquina que vols eliminar   |");
-		System.out.println("--------------------------------------");
+		printHeader("Ingressa l'ID de la VM que vols eliminar.");
 		toDelete = sc.nextLine();
 		SlotsMachines.deleteMV(toDelete);		
-		System.out.println("--------------------------------------");
-		System.out.println("|     Les Teues Máquines Vituals     |");
-		System.out.println("--------------------------------------");
+		printHeader("Les Teues Máquines Vituals");
 		SlotsMachines.printMvs();
+	}
+	
+	public static void espacio() {
+		System.out.println(SlotsMachines.espacio[1]);
+	}
+	
+	public static void printHeader(String arg) {
+		System.out.println("----------------------------------");
+		System.out.println("|     " + arg + "    |");
+		System.out.println("----------------------------------");
 	}
 	
 	
