@@ -18,18 +18,19 @@ import pkgClassesVirtualio.SlotsMachines;
  * @since 03-10-2021
  */
 public class GestioVirtualio {
-
+	public static Scanner sc = new Scanner(System.in);
+	
+		
 	// método main
 	public static void main(String[] args) {
 		// 1. Declarar array con opcions del menú fuera de la función
-		String[] opcions = new String[6];
-		Scanner sc = new Scanner(System.in);
-		opcions[0] = "[E]Crear Espai per a MVs";
-		opcions[1] = "[C]Nova Màquina Virtual";
-		opcions[2] = "[R]Llistar Màquines Virtuals";
-		opcions[3] = "[U]Editar Màquina Virtual";
-		opcions[4] = "[D]Eliminar Màquina Virtual";
-		opcions[5] = "[X]Sortir";
+		String[] opcions = new String[5];
+		
+		opcions[0] = "[C]Nova Màquina Virtual";
+		opcions[1] = "[R]Llistar Màquines Virtuals";
+		opcions[2] = "[U]Editar Màquina Virtual";
+		opcions[3] = "[D]Eliminar Màquina Virtual";
+		opcions[4] = "[X]Sortir";
 
 		// 2.variable para salir del programa
 		boolean sortir = false;
@@ -42,22 +43,10 @@ public class GestioVirtualio {
 
 			switch (opcio) {
 
-			case 'E':
-				System.out.println("----------------------------------");
-				System.out.println("|    [E]Crear Espai per a MVs    |");
-				System.out.println("----------------------------------");
-				SlotsMachines.crearEspai();
-				break;
-
 			case 'C':
 				System.out.println("----------------------------------");
 				System.out.println("|     [C]Nova Màquina Virutal    |");
 				System.out.println("----------------------------------");
-//					if (espacio == null) {
-//						System.out.println("Has de crear un espai abans de crear una máquina");
-//					} else {
-//						
-//					}
 				SlotsMachines.addMV();
 				break;
 			case 'R':
@@ -78,9 +67,6 @@ public class GestioVirtualio {
 				System.out.println("--------------------------------");
 				System.out.println("   [D]Eliminar Màquina Virtual    ");
 				System.out.println("--------------------------------");
-				VirtualMachine newArr=new VirtualMachine();
-				SlotsMachines.deleteMV();
-				newArr.toString();
 				
 				
 				break;
@@ -133,4 +119,22 @@ public class GestioVirtualio {
 		return opcio1;
 
 	}
+	
+	@SuppressWarnings("resource")
+	public static void deleteMV() {
+		String toDelete;	
+		SlotsMachines.printMvs();
+		System.out.println("---------------------------------------");
+		System.out.println("|          Ingressa la VM Id          |");
+		System.out.println("|   de la màquina que vols eliminar   |");
+		System.out.println("--------------------------------------");
+		toDelete = sc.nextLine();
+		SlotsMachines.deleteMV(toDelete);		
+		System.out.println("--------------------------------------");
+		System.out.println("|     Les Teues Máquines Vituals     |");
+		System.out.println("--------------------------------------");
+		SlotsMachines.printMvs();
+	}
+	
+	
 }

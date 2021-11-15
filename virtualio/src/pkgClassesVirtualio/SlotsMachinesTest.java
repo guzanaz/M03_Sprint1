@@ -7,13 +7,14 @@ import org.junit.Before;
 import org.junit.After;
 
 class SlotsMachinesTest {
-	SlotsMachines slots;
 	
 	@Before
 	void setUp() {
-		slots = new SlotsMachines(8);
-        slots.espacio[0] = new VirtualMachine("dani", "dfdf", "ss", "ddd", "os_versi", "ram_size", "ssd grande muy grande", "Nada que decir",true);
-        System.out.println("Creando");
+		SlotsMachines.espacio[0] = new VirtualMachine("dani", "dfdf", "ss", "ddd", "os_versi", "ram_size", "ssd grande muy grande", "Nada que decir",true);
+		SlotsMachines.espacio[1] = new VirtualMachine("Fermín", "28", "ss", "ddd", "os_versi", "ram_size", "ssd grande muy grande", "Nada que decir",true);
+		SlotsMachines.espacio[2] = new VirtualMachine("Pinocho", "dfdf", "ss", "ddd", "os_versi", "ram_size", "ssd grande muy grande", "Nada que decir",true);
+		System.out.println("Creando");
+		System.out.println(SlotsMachines.espacio.length);
 	}
 	
 	
@@ -33,7 +34,13 @@ class SlotsMachinesTest {
     public void borrarUna()
     {
     	setUp();
-        slots.deleteMV();
+    	System.out.println("\nMAQUINAS ACTUALES: ");
+    	System.out.println(SlotsMachines.espacio.length);
+    	SlotsMachines.printMvs();
+    	SlotsMachines.deleteMV("dani");   	
+    	System.out.println("\nMAQUINAS DESPUÉS DE BORRAR: ");
+    	System.out.println(SlotsMachines.espacio.length);
+    	SlotsMachines.printMvs();
         tearDown();
     }
     

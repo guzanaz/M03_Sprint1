@@ -21,25 +21,9 @@ import java.util.Scanner;
 public class SlotsMachines {
 	
 	
-	static VirtualMachine[] espacio;// espacio disponible para máquinas
+	public static VirtualMachine[] espacio = new VirtualMachine[3]; // espacio disponible para máquinas
 	int num;// para asignar el índice de VM al array espacio
 
-	// ------------------------------------------------------------------------//
-	// ------------------------- Métodos Constructores ------------------------//
-	// ------------------------------------------------------------------------//
-	public SlotsMachines() {
-
-	}
-
-	// Constructor con tamaño
-	public SlotsMachines(int num) {
-		// inicializamos la llargada del array
-		this.espacio = new VirtualMachine[num];
-		// iniciar el valor del índice
-		this.num = num;
-	}
-	
-	
 	// ------------------------------------------------------------------------//
 	// ---------------------------- Métodos get&set ---------------------------//
 	// ------------------------------------------------------------------------//
@@ -54,8 +38,8 @@ public class SlotsMachines {
 	/**
 	 * @param espacio the espacio to set
 	 */
-	public void setEspacio(VirtualMachine[] espacio) {
-		this.espacio = espacio;
+	public static void setEspacio(VirtualMachine[] espacio_arg) {
+		espacio = espacio_arg;
 	}
 
 	/**
@@ -97,29 +81,7 @@ public class SlotsMachines {
 		return;
 	}
 
-	/**
-	 * Método crearEspai(). 
-	 * Permite asignar el índice del array que guardará las MV.
-	 * índice del array = total de mv posibles de almacenar.
-	 * 
-	 * @param void
-	 * @return void
-	 */
-	public static void crearEspai() {
-		Scanner sc = new Scanner(System.in);
-		System.out.println("---------------------------------------------------");
-		System.out.println("| Quantes màquines virtuals voldràs emmagatzemar? |");
-		System.out.println("---------------------------------------------------");
-		int num2 = sc.nextInt();
-		System.out.println("---------------------------------------------------");
-		System.out.println("|                      Creant...                  |");
-		System.out.println("---------------------------------------------------");
-		SlotsMachines nuevo = new SlotsMachines(num2);
-		System.out.println("---------------------------------------------------");
-		System.out.println("|                " + num2 + " Espai/s Creats               |");
-		System.out.println("---------------------------------------------------");
 
-	}
 
 	/**
 	 * Método addMV(). Recorre los índices del array espacio para mv. Se detiene en
@@ -158,43 +120,22 @@ public class SlotsMachines {
 		return;
 	}
 
-	public static VirtualMachine[] deleteMV() {
-		String toDelete;
-		VirtualMachine[] newArr = null;
-		@SuppressWarnings("resource")
-		Scanner sc = new Scanner(System.in);
-		printMvs();
-		System.out.println("---------------------------------------");
-		System.out.println("|          Ingressa la VM Id          |");
-		System.out.println("|   de la màquina que vols eliminar   |");
-		System.out.println("--------------------------------------");
-		toDelete = sc.nextLine();
+	public static void deleteMV(String toDelete) {
+		VirtualMachine[] newArr = new VirtualMachine[espacio.length - 1];
 		for (int i = 0; i < espacio.length-1; i++) {
 				if (espacio[i].getVm_id().equals(toDelete)) { 
-					newArr = new VirtualMachine[espacio.length - 1];
+					
 					for(int index = 0; index < i; index++){
 	                    newArr[index] = espacio[index];
 	                }
 					for(int j = i; j < espacio.length - 1; j++){
 	                    newArr[j] = espacio[j+1];
 	                }
+					
 				break;
 				}
 		}
-		
-		System.out.println("--------------------------------------");
-		System.out.println("|     Les Teues Máquines Vituals     |");
-		System.out.println("--------------------------------------");
-		return newArr;
+		espacio = newArr;
 	}
 
-	/**
-	 * Método main de la clase SlotsMachines para hacer pruebas
-	 * 
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		crearEspai();
-
-	}
 }
