@@ -22,7 +22,6 @@ class SlotsMachinesTest {
     public void comprobarCreada()
     {
 		setUp();
-		//System.out.print("testiando wei!");
         for(VirtualMachine vm: SlotsMachines.espacio){
             if(vm != null){
                 System.out.println(vm.toString());

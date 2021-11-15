@@ -5,7 +5,6 @@ package pkgGestioVirtualio;
 
 import java.util.Scanner;
 
-import pkgClassesVirtualio.VirtualMachine;
 import pkgClassesVirtualio.SlotsMachines;
 
 /**
@@ -21,7 +20,6 @@ public class GestioVirtualio {
 	public static Scanner sc = new Scanner(System.in);
 	
 		
-	// método main
 	public static void main(String[] args) {
 		// 1. Declarar array con opcions del menú fuera de la función
 		String[] opcions = new String[5];
@@ -67,7 +65,7 @@ public class GestioVirtualio {
 				System.out.println("--------------------------------");
 				System.out.println("   [D]Eliminar Màquina Virtual    ");
 				System.out.println("--------------------------------");
-				
+				deleteMV();
 				
 				break;
 
@@ -88,7 +86,7 @@ public class GestioVirtualio {
 			}
 		} while (sortir == false);
 
-	}// fin método main
+	}
 
 	/**
 	 * Función Menú. Muestra el menú de opciones por pantalla y pide ingresar una
@@ -111,7 +109,7 @@ public class GestioVirtualio {
 		System.out.println("    [ingressa una opció]   ");
 
 		// entrada por teclado
-		Scanner sc = new Scanner(System.in);
+		sc = new Scanner(System.in);
 		// guardamos la entrada en opcio
 		char opcio1 = sc.next().toUpperCase().charAt(0);
 		
@@ -120,7 +118,7 @@ public class GestioVirtualio {
 
 	}
 	
-	@SuppressWarnings("resource")
+	
 	public static void deleteMV() {
 		String toDelete;	
 		SlotsMachines.printMvs();
