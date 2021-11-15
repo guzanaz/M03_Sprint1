@@ -8,6 +8,8 @@ import org.junit.jupiter.api.Test;
 import pkgClassesVirtualio.SlotsMachines;
 import pkgClassesVirtualio.VirtualMachine;
 
+
+
 class GestioVirtualioTest {
 
 	@Before

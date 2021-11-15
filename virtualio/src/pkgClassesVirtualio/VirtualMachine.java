@@ -187,15 +187,15 @@ public class VirtualMachine {
 	
 	public String toString() {
 		return "VirtualMachine \n"
-				+ "VM Id: " + vm_id +
-				"\nUser: " + user + 
-				"\nName: " + name + 
-				"\nOS: " + os + 
-				"\nOS version: " + os_version + 
-				"\nRam size: " + ram_size + 
-				"\nSsd size: " + ssd_size + 
-				"\nDescription: " + description + 
-				"\nState: " + state(power_on)+"\n \n";
+				+ "\tVM Id: " + vm_id +
+				"\n\tUser: " + user + 
+				"\n\tName: " + name + 
+				"\n\tOS: " + os + 
+				"\n\tOS version: " + os_version + 
+				"\n\tRam size: " + ram_size + 
+				"\n\tSsd size: " + ssd_size + 
+				"\n\tDescription: " + description + 
+				"\n\tState: " + state(power_on)+"\n \n";
 	}
 	
 	public String state(boolean power_on){

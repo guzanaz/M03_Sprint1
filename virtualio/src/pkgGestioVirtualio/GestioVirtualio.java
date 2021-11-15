@@ -109,12 +109,12 @@ public class GestioVirtualio {
 	
 	public static void deleteMv() {
 		String toDelete;	
-		SlotsMachines.printMvs();
+		System.out.println(SlotsMachines.toStringFormat());
 		printHeader("Ingressa l'ID de la VM que vols eliminar.");
 		toDelete = sc.nextLine();
-		SlotsMachines.deleteMV(toDelete);		
+		SlotsMachines.deleteMv(toDelete);		
 		printHeader("Les Teues Máquines Vituals");
-		SlotsMachines.printMvs();
+		System.out.println(SlotsMachines.toStringFormat());
 	}
 	
 	

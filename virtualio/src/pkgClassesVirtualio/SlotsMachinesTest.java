@@ -9,6 +9,9 @@ import org.junit.After;
 class SlotsMachinesTest {
 	
 	@Before
+	/**
+	 * Que no salga en rojo
+	 */
 	void setUp() {
 		System.out.println("Creando");
 		SlotsMachines.addMv(new VirtualMachine("dani", "dfdf", "ss", "ddd", "os_versi", "ram_size", "ssd grande muy grande", "Nada que decir",true));
@@ -27,6 +30,7 @@ class SlotsMachinesTest {
                 System.out.println(vm.toString());
             }
         }
+        tearDown();
     }
     
     @Test
@@ -34,13 +38,17 @@ class SlotsMachinesTest {
     {
     	setUp();
     	System.out.println("\nMAQUINAS ACTUALES: ");
-    	System.out.println(SlotsMachines.espacio.length);
-    	SlotsMachines.printMvs();
-    	SlotsMachines.deleteMV("dani");   	
+    	//System.out.println(SlotsMachines.espacio.length);
+    	System.out.println(SlotsMachines.toStringFormat());
+    	System.out.println(SlotsMachines.getNumSlots());
+    	assert(SlotsMachines.getNumSlots()==3);
+    	SlotsMachines.deleteMv("dani");   	
     	System.out.println("\nMAQUINAS DESPUÉS DE BORRAR: ");
-    	System.out.println(SlotsMachines.espacio.length);
-    	SlotsMachines.printMvs();
+    	System.out.println("Espacios según length: " + SlotsMachines.espacio.length);
+    	System.out.println(SlotsMachines.toStringFormat());
         tearDown();
+        System.out.println("Espacios según getNumSlots: " +SlotsMachines.getNumSlots());
+        assert(SlotsMachines.getNumSlots()==1);
     }
     
     @After
