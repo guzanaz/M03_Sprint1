@@ -3,7 +3,7 @@
  */
 package pkgClassesVirtualio;
 
-import java.util.Arrays;
+import java.util.Scanner;
 
 /**
  * Sprint 1 M03 SlotsMachines: clase del proyecto Virtualio. Conforma el paquete
@@ -68,9 +68,9 @@ public class SlotsMachines {
 	 * @param void
 	 * @return void
 	 */
-	public static void dialogAddMV() {
+	public static void dialogAddMV(Scanner sc) {
 		// Creem nova màquina virtual temporal
-		VirtualMachine tmpMaquina = VirtualMachine.dialogCreateMV();
+		VirtualMachine tmpMaquina = VirtualMachine.dialogCreateMV(sc);
 		// L'afegim a l'últim slot
 		addMv(tmpMaquina);
 	}

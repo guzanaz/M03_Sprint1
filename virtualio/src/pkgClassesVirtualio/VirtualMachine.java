@@ -2,7 +2,6 @@
  * 
  */
 package pkgClassesVirtualio;
-import java.util.Date;
 import java.util.Scanner;
 /**
  * Sprint 1
@@ -215,9 +214,7 @@ public class VirtualMachine {
 	 * @param void
 	 * @return VirtualMachine.
 	 */
-	@SuppressWarnings("null")
-	public static VirtualMachine dialogCreateMV() {
-		Scanner sc = new Scanner(System.in);
+	public static VirtualMachine dialogCreateMV(Scanner sc) {
 		VirtualMachine novaMV;
 		String vm_id, user, name, os, os_version, ram_size, ssd_size, description;
 		boolean power_on=false;

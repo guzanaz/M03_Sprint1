@@ -10,13 +10,17 @@ package pkgClassesVirtualio;
 public class StudentUser {
 	private int user_id;
 	private String user_name;
-
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+	
+	public StudentUser(String user_name, int user_id) {
+		this.user_id = user_id;
+		this.user_name = user_name;
 	}
-
+	
+	public int getUid() {
+		return user_id;
+	}
+	
+	public String getUname() {
+		return user_name;
+	}
 }

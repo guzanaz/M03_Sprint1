@@ -3,8 +3,6 @@
  */
 package pkgGestioVirtualio;
 
-import java.util.Arrays;
-//import java.util.*;
 import java.util.Scanner;
 
 import pkgClassesVirtualio.SlotsMachines;
@@ -44,7 +42,7 @@ public class GestioVirtualio {
 
 			case 'C':
 				printHeader("[C] Nova Màquina Virutal");
-				SlotsMachines.dialogAddMV();
+				SlotsMachines.dialogAddMV(sc);
 				enterToContinue();
 				break;
 
@@ -90,24 +88,23 @@ public class GestioVirtualio {
 	 */
 	private static char menu(String[] opcions) {
 		char opcio = ' ';
-		
+
 		printHeader("VIRTUALIO MENU");
 		for (int i = 0; i < opcions.length; i++) {
 			System.out.println(opcions[i]);
 		}
 		// Preguntamos qué opción seleccionarán
 		printHeader("QUÈ VOLS FER?");
-		
-		while("CRUDX".indexOf(opcio)==-1) {
-			System.out.println("OPCIO: " + opcio);
-		System.out.println("    [ingressa una opció]   ");
 
+		while ("CRUDX".indexOf(opcio) == -1) {
+			System.out.println("OPCIO: " + opcio);
+			System.out.println("    [ingressa una opció]   ");
 			// guardamos la entrada en opcio
 			String tmpInput = sc.nextLine(); // Importante para que se vacíe el buffer
 			try {
-			opcio = tmpInput.toUpperCase().charAt(0);
-			}catch (StringIndexOutOfBoundsException e) {
-				System.out.println("Has d'introduir una opció valida (l'Enter sol no val!!)");
+				opcio = tmpInput.toUpperCase().charAt(0);
+			} catch (StringIndexOutOfBoundsException e) {
+				System.out.println("Has d'introduir una opció valida [CRUDX] (l'Enter sol no val!!)");
 			}
 		}
 
