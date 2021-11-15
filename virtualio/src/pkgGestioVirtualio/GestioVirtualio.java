@@ -5,7 +5,6 @@ package pkgGestioVirtualio;
 
 import java.util.Scanner;
 
-import pkgClassesVirtualio.VirtualMachine;
 import pkgClassesVirtualio.SlotsMachines;
 
 /**
@@ -18,18 +17,18 @@ import pkgClassesVirtualio.SlotsMachines;
  * @since 03-10-2021
  */
 public class GestioVirtualio {
-
-	// método main
+	public static Scanner sc = new Scanner(System.in);
+	
+		
 	public static void main(String[] args) {
 		// 1. Declarar array con opcions del menú fuera de la función
-		String[] opcions = new String[6];
-		Scanner sc = new Scanner(System.in);
-		opcions[0] = "[E]Crear Espai per a MVs";
-		opcions[1] = "[C]Nova Màquina Virtual";
-		opcions[2] = "[R]Llistar Màquines Virtuals";
-		opcions[3] = "[U]Editar Màquina Virtual";
-		opcions[4] = "[D]Eliminar Màquina Virtual";
-		opcions[5] = "[X]Sortir";
+		String[] opcions = new String[5];
+		
+		opcions[0] = "[C]Nova Màquina Virtual";
+		opcions[1] = "[R]Llistar Màquines Virtuals";
+		opcions[2] = "[U]Editar Màquina Virtual";
+		opcions[3] = "[D]Eliminar Màquina Virtual";
+		opcions[4] = "[X]Sortir";
 
 		// 2.variable para salir del programa
 		boolean sortir = false;
@@ -42,67 +41,41 @@ public class GestioVirtualio {
 
 			switch (opcio) {
 
-			case 'E':
-				System.out.println("----------------------------------");
-				System.out.println("|    [E]Crear Espai per a MVs    |");
-				System.out.println("----------------------------------");
-				SlotsMachines.crearEspai();
-				break;
-
 			case 'C':
-				System.out.println("----------------------------------");
-				System.out.println("|     [C]Nova Màquina Virutal    |");
-				System.out.println("----------------------------------");
-//					if (espacio == null) {
-//						System.out.println("Has de crear un espai abans de crear una máquina");
-//					} else {
-//						
-//					}
+				printHeader("[C] Nova Màquina Virutal");
 				SlotsMachines.addMV();
 				break;
+				
 			case 'R':
-				System.out.println("--------------------------------");
-				System.out.println("  [R]Llistar Màquines Virtuals  ");
-				System.out.println("--------------------------------");
+				printHeader("[R] Llistar Màquines Virtuals");
 				SlotsMachines.printMvs();
 				break;
 
 			case 'U':
-				System.out.println("--------------------------------");
-				System.out.println("   [U]Editar Màquina Virtual    ");
-				System.out.println("--------------------------------");
+				printHeader("[U] Editar Màquina Virtual");
 				
 				break;
 
 			case 'D':
-				System.out.println("--------------------------------");
-				System.out.println("   [D]Eliminar Màquina Virtual    ");
-				System.out.println("--------------------------------");
-				VirtualMachine newArr=new VirtualMachine();
-				SlotsMachines.deleteMV();
-				newArr.toString();
-				
+				printHeader("[D] Eliminar Màquina Virtual");
+				deleteMV();
 				
 				break;
 
 			case 'X':
-				System.out.println("--------------------------------");
-				System.out.println("           [X]Sortir!           ");
-				System.out.println("--------------------------------");
+				printHeader("[X] Sortir!");
 				System.out.println("     Fi del programa. Adeu!     ");
 				System.out.println("--------------------------------");
 				sortir = true;
 				break;
 
 			default:
-				System.out.println("\n-----------------------------------------");
-				System.out.println("| COMPTE! has d'ingressar una opció vàlida!|");
-				System.out.println("-----------------------------------------\n");
+				printHeader("COMPTE! has d'ingressar una opció vàlida!");
 				sortir = false;
 			}
 		} while (sortir == false);
 
-	}// fin método main
+	}
 
 	/**
 	 * Función Menú. Muestra el menú de opciones por pantalla y pide ingresar una
@@ -112,25 +85,44 @@ public class GestioVirtualio {
 	 * @return variable tipo char (opción seleccionada)
 	 */
 	public static char menu(String[] opcions) {
-		System.out.println("-----------------------------");
-		System.out.println("|       VIRTUALIO MENU      |");
-		System.out.println("-----------------------------");
+		printHeader("VIRTUALIO MENU");
 		for (int i = 0; i < opcions.length; i++) {
 			System.out.println(opcions[i]);
 		}
 		// Preguntamos qué opción seleccionarán
-		System.out.println("-----------------------------");
-		System.out.println("|       QUÉ VOLS FER?       |");
-		System.out.println("-----------------------------");
+		printHeader("QUÈ VOLS FER?");
 		System.out.println("    [ingressa una opció]   ");
-
-		// entrada por teclado
-		Scanner sc = new Scanner(System.in);
+		
 		// guardamos la entrada en opcio
-		char opcio1 = sc.next().toUpperCase().charAt(0);
+		String tmpInput = sc.nextLine();
+		char opcio1 = tmpInput.toUpperCase().charAt(0);
+		
 		
 		// retornamos opcio al main
 		return opcio1;
 
 	}
+	
+	
+	public static void deleteMV() {
+		String toDelete;	
+		SlotsMachines.printMvs();
+		printHeader("Ingressa l'ID de la VM que vols eliminar.");
+		toDelete = sc.nextLine();
+		SlotsMachines.deleteMV(toDelete);		
+		printHeader("Les Teues Máquines Vituals");
+		SlotsMachines.printMvs();
+	}
+	
+	public static void espacio() {
+		System.out.println(SlotsMachines.espacio[1]);
+	}
+	
+	public static void printHeader(String arg) {
+		System.out.println("----------------------------------");
+		System.out.println("|     " + arg + "    |");
+		System.out.println("----------------------------------");
+	}
+	
+	
 }
