@@ -216,7 +216,7 @@ public class VirtualMachine {
 	 * @return VirtualMachine.
 	 */
 	@SuppressWarnings("null")
-	public static VirtualMachine createMV() {
+	public static VirtualMachine dialogCreateMV() {
 		Scanner sc = new Scanner(System.in);
 		VirtualMachine novaMV;
 		String vm_id, user, name, os, os_version, ram_size, ssd_size, description;
@@ -239,7 +239,9 @@ public class VirtualMachine {
 		description=sc.nextLine();
 		
 		novaMV=new VirtualMachine(vm_id, user, name, os, os_version, ram_size, ssd_size, description,power_on);
-		
+		System.out.println("---------------");
+		System.out.println("MV CREAT...");
+		System.out.println("---------------");
 		return novaMV;
 	}
 	

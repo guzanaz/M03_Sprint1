@@ -43,23 +43,26 @@ public class GestioVirtualio {
 
 			case 'C':
 				printHeader("[C] Nova Màquina Virutal");
-				SlotsMachines.addMV();
+				SlotsMachines.dialogAddMV();
+				enterToContinue();
 				break;
 				
 			case 'R':
 				printHeader("[R] Llistar Màquines Virtuals");
 				SlotsMachines.printMvs();
+				enterToContinue();
 				break;
 
 			case 'U':
 				printHeader("[U] Editar Màquina Virtual");
 				
+				enterToContinue();
 				break;
 
 			case 'D':
 				printHeader("[D] Eliminar Màquina Virtual");
-				deleteMV();
-				
+				deleteMv();
+				enterToContinue();
 				break;
 
 			case 'X':
@@ -84,7 +87,7 @@ public class GestioVirtualio {
 	 * @param opcions
 	 * @return variable tipo char (opción seleccionada)
 	 */
-	public static char menu(String[] opcions) {
+	private static char menu(String[] opcions) {
 		printHeader("VIRTUALIO MENU");
 		for (int i = 0; i < opcions.length; i++) {
 			System.out.println(opcions[i]);
@@ -94,7 +97,7 @@ public class GestioVirtualio {
 		System.out.println("    [ingressa una opció]   ");
 		
 		// guardamos la entrada en opcio
-		String tmpInput = sc.nextLine();
+		String tmpInput = sc.nextLine();  //Importante para que se vacíe el buffer
 		char opcio1 = tmpInput.toUpperCase().charAt(0);
 		
 		
@@ -104,7 +107,7 @@ public class GestioVirtualio {
 	}
 	
 	
-	public static void deleteMV() {
+	public static void deleteMv() {
 		String toDelete;	
 		SlotsMachines.printMvs();
 		printHeader("Ingressa l'ID de la VM que vols eliminar.");
@@ -114,14 +117,16 @@ public class GestioVirtualio {
 		SlotsMachines.printMvs();
 	}
 	
-	public static void espacio() {
-		System.out.println(SlotsMachines.espacio[1]);
-	}
 	
-	public static void printHeader(String arg) {
+	private static void printHeader(String arg) {
 		System.out.println("----------------------------------");
 		System.out.println("|     " + arg + "    |");
 		System.out.println("----------------------------------");
+	}
+	
+	private static void enterToContinue() {
+		System.out.println("Premi 'enter' per a tornar al menú.");
+		sc.nextLine();		
 	}
 	
 	

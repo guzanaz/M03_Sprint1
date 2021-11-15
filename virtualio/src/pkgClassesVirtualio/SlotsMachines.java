@@ -4,25 +4,21 @@
 package pkgClassesVirtualio;
 
 import java.util.Arrays;
+
 /**
- * Sprint 1
- * M03 SlotsMachines: clase del proyecto Virtualio. 
- * Conforma el paquete pkgClassesVirtualio. Contiene atributos y métodos para la definición
- * espacio total para almacenar Máquinas Virtuales. 
- * Sus atributos y métodos se utilizan en el programa
- * inicial GestioVirtualio.java
+ * Sprint 1 M03 SlotsMachines: clase del proyecto Virtualio. Conforma el paquete
+ * pkgClassesVirtualio. Contiene atributos y métodos para la definición espacio
+ * total para almacenar Máquinas Virtuales. Sus atributos y métodos se utilizan
+ * en el programa inicial GestioVirtualio.java
  * 
  * @author Daniela Gallardo Reyes
  * @version 1.0 (entrega final PERO siempre pueden haber mejoras)
  * @since 3-10-2021
  */
-import java.util.Scanner;
 
 public class SlotsMachines {
-	
-	
-	public static VirtualMachine[] espacio = new VirtualMachine[3]; // espacio disponible para máquinas
-	int num;// para asignar el índice de VM al array espacio
+
+	public static VirtualMachine[] espacio = new VirtualMachine[1]; // espacio disponible para máquinas
 
 	// ------------------------------------------------------------------------//
 	// ---------------------------- Métodos get&set ---------------------------//
@@ -45,17 +41,9 @@ public class SlotsMachines {
 	/**
 	 * @return the num
 	 */
-	public int getNum() {
-		return num;
+	public int getNumSlots() {
+		return espacio.length;
 	}
-
-	/**
-	 * @param num the num to set
-	 */
-	public void setNum(int num) {
-		this.num = num;
-	}
-
 
 	/**
 	 * Método toString por default permite hacer pruebas
@@ -71,37 +59,52 @@ public class SlotsMachines {
 	 * Método toStringFormat permite dar formato para mostrarse por pantalla
 	 * 
 	 * @param void
-	 * @return void
+	 * @return String
 	 */
-	public void toStringFormat() {
-		for (int i = 0; i < num; i++) {
-			espacio[i] = new VirtualMachine();
-			System.out.print(i + 1 + "." + espacio[i].toString());
+	public String toStringFormat() {
+		String tmpString = "";
+		for (int i = 0; i < espacio.length; i++) {
+			tmpString += (i + 1) + "." + espacio[i].toString();
 		}
-		return;
+		return tmpString;
 	}
 
-
-
 	/**
-	 * Método addMV(). Recorre los índices del array espacio para mv. Se detiene en
-	 * el índice disponible. Llama al método createMV().
+	 * Método dialogAddMV(). Afegeix una nova màquina virtual a l'últim slot,
+	 * mitjançant dialeg I/O.
 	 * 
 	 * @param void
 	 * @return void
 	 */
-	public static void addMV() {
-		for (int i = 0; i < espacio.length; i++) {
-			if (espacio[i] == null) {
-				espacio[i] = VirtualMachine.createMV();
-				System.out.println("---------------");
-				System.out.println("MV CREAT...");
-				System.out.println("---------------");
-				System.out.println(espacio[i].toString());
-				break;
+	public static void dialogAddMV() {
+		// Creem nova màquina virtual temporal
+		VirtualMachine tmpMaquina = VirtualMachine.dialogCreateMV();
+		// L'afegim a l'últim slot
+		addMv(tmpMaquina);
+	}
+
+	/**
+	 * Añade directemente una nueva VM
+	 */
+	public static void addMv(VirtualMachine maquina) {
+
+		int index = espacio.length;
+		// Si la posició 0 no està ocupada, l'ocupem
+		if (espacio[0] == null) {
+			espacio[0] = maquina;
+		// En cas contrari fem un array nou i posem la maquina en l'ultima posició
+		} else {
+			VirtualMachine[] tmpEspacio = new VirtualMachine[index + 1];
+			// Omplim la copia amb les dades antigues
+			for (int i = 0; i < index; i++) {
+				if (espacio[i] != null) {
+					tmpEspacio[i] = espacio[i];
+				}
 			}
+			// Introduim nova màquina sempre a l'última posició
+			tmpEspacio[index] = maquina;
+			espacio = tmpEspacio;
 		}
-		return;
 	}
 
 	/**
@@ -120,23 +123,41 @@ public class SlotsMachines {
 		return;
 	}
 
-	public static void deleteMV(String toDelete) {
-		VirtualMachine[] newArr = new VirtualMachine[espacio.length - 1];
-		System.out.println("Orden de eliminar " + toDelete);
-		for (int i = 0; i < espacio.length-1; i++) {
-				if (espacio[i].getVm_id().equals(toDelete)) { 
-					
-					for(int index = 0; index < i; index++){
-	                    newArr[index] = espacio[index];
-	                }
-					for(int j = i; j < espacio.length - 1; j++){
-	                    newArr[j] = espacio[j+1];
-	                }
-					
-				break;
-				}
+	/**
+	 * Elimina la máquina virtual con id igual a toDelete. Si hubiera más de uno se borrará solo el primero.
+	 * 
+	 * @param toDelete: Id de la máquina a eliminar
+	 * @return boolean: true si se encuentra el ID, falso en caso contrario
+	 */
+	public static boolean deleteMV(String toDelete) {
+		VirtualMachine[] tmpArr = new VirtualMachine[1];
+		boolean found = false;
+		if (espacio.length > 1) {
+			tmpArr = new VirtualMachine[espacio.length - 1];
+		} else {
+			tmpArr = new VirtualMachine[1];
 		}
-		espacio = newArr;
+		for (int i = 0; i < espacio.length; i++) {
+			if (espacio[i].getVm_id().equals(toDelete)) {
+				found = true;
+				for (int index = 0; index < i; index++) {
+					tmpArr[index] = espacio[index];
+				}
+				for (int j = i; j < espacio.length - 1; j++) {
+					tmpArr[j] = espacio[j + 1];
+				}
+				break;
+			}
+		}
+		if (found) {
+			espacio = tmpArr;
+		}
+
+		return found;
+	}
+
+	public static void resetSlots() {
+		espacio = new VirtualMachine[1];
 	}
 
 }
