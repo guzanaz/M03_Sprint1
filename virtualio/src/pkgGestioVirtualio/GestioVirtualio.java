@@ -49,7 +49,7 @@ public class GestioVirtualio {
 				
 			case 'R':
 				printHeader("[R] Llistar Màquines Virtuals");
-				SlotsMachines.printMvs();
+				System.out.println(SlotsMachines.toStringFormat());
 				enterToContinue();
 				break;
 
@@ -119,9 +119,10 @@ public class GestioVirtualio {
 	
 	
 	private static void printHeader(String arg) {
-		System.out.println("----------------------------------");
+		String headerStyle = "-----------------------------------------------------------";
+		System.out.println(headerStyle);
 		System.out.println("|     " + arg + "    |");
-		System.out.println("----------------------------------");
+		System.out.println(headerStyle);
 	}
 	
 	private static void enterToContinue() {

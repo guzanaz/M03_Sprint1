@@ -34,7 +34,7 @@ class SlotsMachinesTest {
     }
     
     @Test
-    public void borrarUna()
+    public void borrarUnaQueExiste()
     {
     	setUp();
     	System.out.println("\nMAQUINAS ACTUALES: ");
@@ -45,10 +45,19 @@ class SlotsMachinesTest {
     	SlotsMachines.deleteMv("dani");   	
     	System.out.println("\nMAQUINAS DESPUÉS DE BORRAR: ");
     	System.out.println("Espacios según length: " + SlotsMachines.espacio.length);
-    	System.out.println(SlotsMachines.toStringFormat());
-        tearDown();
+    	System.out.println(SlotsMachines.toStringFormat());        
         System.out.println("Espacios según getNumSlots: " +SlotsMachines.getNumSlots());
-        assert(SlotsMachines.getNumSlots()==1);
+        assert(SlotsMachines.getNumSlots()==2);
+        tearDown();
+    }
+    
+    @Test
+    public void borrarUnaQueNoExiste()
+    {
+    	setUp();
+    	assert(SlotsMachines.getNumSlots()==3);
+    	SlotsMachines.deleteMv("Ataúlfo Lluís");
+    	assert(SlotsMachines.getNumSlots()==3);
     }
     
     @After

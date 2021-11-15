@@ -16,10 +16,6 @@ import java.util.Arrays;
  * @since 3-10-2021
  */
 
-/**
- * @author joaquim
- *
- */
 public class SlotsMachines {
 
 	public static VirtualMachine[] espacio = new VirtualMachine[1]; // espacio disponible para máquinas
@@ -50,15 +46,6 @@ public class SlotsMachines {
 	}
 
 	/**
-	 * toStringS: Devuelve un string de los campos de clase (estáticos)
-	 * @param String (array)
-	 * @return String
-	 */
-	public static String toStringS() {
-		return Arrays.toString(espacio);
-	}
-
-	/**
 	 * Método toStringFormat permite dar formato para mostrarse por pantalla
 	 * 
 	 * @param void
@@ -67,7 +54,9 @@ public class SlotsMachines {
 	public static String toStringFormat() {
 		String tmpString = "";
 		for (int i = 0; i < espacio.length; i++) {
-			tmpString += (i + 1) + "." + espacio[i].toString();
+			if (espacio[i] != null) {
+				tmpString += (i + 1) + "." + espacio[i].toString();
+			}
 		}
 		return tmpString;
 	}
@@ -95,7 +84,7 @@ public class SlotsMachines {
 		// Si la posició 0 no està ocupada, l'ocupem
 		if (espacio[0] == null) {
 			espacio[0] = maquina;
-		// En cas contrari fem un array nou i posem la maquina en l'ultima posició
+			// En cas contrari fem un array nou i posem la maquina en l'ultima posició
 		} else {
 			VirtualMachine[] tmpEspacio = new VirtualMachine[index + 1];
 			// Omplim la copia amb les dades antigues
@@ -110,24 +99,9 @@ public class SlotsMachines {
 		}
 	}
 
-//	/**
-//	 * Método printMvs(). Recorre los índices del array espacio para mv. Identifica
-//	 * los índices con datos personalizados. Imprime una lista de las MV creadas.
-//	 * 
-//	 * @param void
-//	 * @return void
-//	 */
-//	public static void printMvs() {
-//		for (int i = 0; i < espacio.length; i++) {
-//			if (espacio[i] != null) {
-//				System.out.println(espacio[i].toString());
-//			}
-//		}
-//		return;
-//	}
-
 	/**
-	 * Elimina la máquina virtual con id igual a toDelete. Si hubiera más de uno se borrará solo el primero.
+	 * Elimina la máquina virtual con id igual a toDelete. Si hubiera más de uno se
+	 * borrará solo el primero.
 	 * 
 	 * @param toDelete: Id de la máquina a eliminar
 	 * @return boolean: true si se encuentra el ID, falso en caso contrario
@@ -139,6 +113,10 @@ public class SlotsMachines {
 			tmpArr = new VirtualMachine[espacio.length - 1];
 		} else {
 			tmpArr = new VirtualMachine[1];
+			if(espacio[0] == null) {
+				System.out.println("No hi ha cap màquina virtual al sistema. No s'eliminarà res.");
+				return false;
+				}
 		}
 		for (int i = 0; i < espacio.length; i++) {
 			if (espacio[i].getVm_id().equals(toDelete)) {
