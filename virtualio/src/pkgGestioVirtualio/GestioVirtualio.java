@@ -2,10 +2,11 @@
  * 
  */
 package pkgGestioVirtualio;
-
+//import java.util.*;
 import java.util.Scanner;
 
 import pkgClassesVirtualio.SlotsMachines;
+
 
 /**
  * Sprint 1
@@ -119,9 +120,17 @@ public class GestioVirtualio {
 	
 	
 	private static void printHeader(String arg) {
-		String headerStyle = "-----------------------------------------------------------";
+		String headerStyle = "----------------------------------------------------------";
+		int padding;
+		String tmpStr = "";
+		if(headerStyle.length() > arg.length()) {
+			padding = (int) (Math.floor(headerStyle.length() - arg.length())/2);
+			for(int i=0; i < padding; i++) {
+				tmpStr += " ";
+			}
+		}
 		System.out.println(headerStyle);
-		System.out.println("|     " + arg + "    |");
+		System.out.println("|"+ tmpStr + arg + tmpStr + "|");
 		System.out.println(headerStyle);
 	}
 	
