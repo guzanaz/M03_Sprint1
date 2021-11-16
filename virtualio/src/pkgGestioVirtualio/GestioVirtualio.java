@@ -22,7 +22,6 @@ public class GestioVirtualio {
 	public static void main(String[] args) {
 		// 1. Declarar array con opcions del menú fuera de la función
 		String[] opcions = new String[5];
-
 		opcions[0] = "[C]Nova Màquina Virtual";
 		opcions[1] = "[R]Llistar Màquines Virtuals";
 		opcions[2] = "[U]Editar Màquina Virtual";
