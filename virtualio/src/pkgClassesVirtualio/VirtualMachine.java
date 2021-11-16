@@ -235,6 +235,11 @@ public class VirtualMachine {
 		return novaMV;
 	}
 
+		
+	/**
+	 * Método digalogModificar().
+	 * @param sc
+	 */
 	public void dialogModifica(Scanner sc) {
 		this.vm_id = prompInputDefault("ID:", vm_id, sc);
 		this.user = prompInputDefault("Usuari:", user, sc);
@@ -246,7 +251,13 @@ public class VirtualMachine {
 		this.description = prompInputDefault("Descripció:", description, sc);
 		this.power_on = reverseState(prompInputDefault("Estat:", state(), sc), power_on);		
 	}
-
+	
+	/**
+	 * Método prompInputDefault().
+	 * @param sc: entrada por teclado.
+	 * @param prompt: enunciado explicativo.
+	 * @param sDefault: valor actual.
+	 */
 	private static String prompInputDefault(String prompt, String sDefault, Scanner sc) {
 		  String prmpt = prompt + " (Presiona enter per deixar-ho com \"" + sDefault + "\"):";
 		  String tmpch = null;
@@ -260,6 +271,12 @@ public class VirtualMachine {
 		  
 	}
 	
+	/**
+	 * 
+	 * @param state
+	 * @param bDefault
+	 * @return
+	 */
 	private static boolean reverseState(String state, boolean bDefault) {
 		if (state.equals("running")){
 			return true;
