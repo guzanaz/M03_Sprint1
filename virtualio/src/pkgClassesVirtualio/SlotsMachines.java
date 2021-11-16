@@ -113,10 +113,10 @@ public class SlotsMachines {
 			tmpArr = new VirtualMachine[espacio.length - 1];
 		} else {
 			tmpArr = new VirtualMachine[1];
-			if(espacio[0] == null) {
+			if (espacio[0] == null) {
 				System.out.println("No hi ha cap màquina virtual al sistema. No s'eliminarà res.");
 				return false;
-				}
+			}
 		}
 		for (int i = 0; i < espacio.length; i++) {
 			if (espacio[i].getVm_id().equals(toDelete)) {
@@ -136,18 +136,34 @@ public class SlotsMachines {
 
 		return found;
 	}
+
 	/**
 	 * Método que edita los atributos de un objeto Virtual Machine
 	 * @param VirtualMachine.getid()/Id de la máquina a editar
 	 * @return VirtualMachine/objeto editado
 	 */
-	public static void editMachine(SlotMachine[i] editar){
-		
+	public static void dialogEditMachine(Scanner sc){
+		String search_id = "";
+		System.out.println("Introdueix l'ID de la màquina que vols modificar:");
+		search_id = sc.nextLine();
+		try {
+			findMaquina(search_id).dialogModifica();
+		}catch (NullPointerException e) {
+			System.out.println("No s'ha trobat la màquina en els slots");
+		}
 	}
-	
 
 	public static void resetSlots() {
 		espacio = new VirtualMachine[1];
 	}
 
+	public static VirtualMachine findMaquina(String id) {
+		for (int i = 0; i < espacio.length; i++) {
+			if (espacio[i].getVm_id().equals(id)) {
+				return SlotsMachines.espacio[i];
+			}
+		}
+		return null;
+	}
+	
 }

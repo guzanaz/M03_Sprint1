@@ -53,7 +53,7 @@ public class GestioVirtualio {
 
 			case 'U':
 				printHeader("[U] Editar Màquina Virtual");
-
+				SlotsMachines.dialogEditMachine(sc);
 				enterToContinue();
 				break;
 
