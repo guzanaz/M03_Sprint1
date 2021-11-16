@@ -136,6 +136,15 @@ public class SlotsMachines {
 
 		return found;
 	}
+	/**
+	 * Método que edita los atributos de un objeto Virtual Machine
+	 * @param VirtualMachine.getid()/Id de la máquina a editar
+	 * @return VirtualMachine/objeto editado
+	 */
+	public static void editMachine(SlotMachine[i] editar){
+		
+	}
+	
 
 	public static void resetSlots() {
 		espacio = new VirtualMachine[1];
