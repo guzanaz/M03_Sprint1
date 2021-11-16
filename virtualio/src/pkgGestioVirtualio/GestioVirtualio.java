@@ -98,12 +98,14 @@ public class GestioVirtualio {
 
 		while ("CRUDX".indexOf(opcio) == -1) {
 			System.out.println("OPCIO: " + opcio);
-			System.out.println("    [ingressa una opció]   ");
+			System.out.println("    [ingressa una opció válida]   ");
 			// guardamos la entrada en opcio
 			String tmpInput = sc.nextLine(); // Importante para que se vacíe el buffer
 			try {
-				printHeader("COMPTE! has d'ingressar una opció vàlida!");
 				opcio = tmpInput.toUpperCase().charAt(0);
+				if ("CRUDX".indexOf(opcio) == -1) {
+					printHeader("COMPTE! has d'ingressar una opció vàlida!");
+				}				
 			} catch (StringIndexOutOfBoundsException e) {
 				System.out.println("Has d'introduir una opció valida [CRUDX] (l'Enter sol no val!!)");
 			}
