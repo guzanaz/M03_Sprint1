@@ -102,6 +102,7 @@ public class GestioVirtualio {
 			// guardamos la entrada en opcio
 			String tmpInput = sc.nextLine(); // Importante para que se vacíe el buffer
 			try {
+				printHeader("COMPTE! has d'ingressar una opció vàlida!");
 				opcio = tmpInput.toUpperCase().charAt(0);
 			} catch (StringIndexOutOfBoundsException e) {
 				System.out.println("Has d'introduir una opció valida [CRUDX] (l'Enter sol no val!!)");
