@@ -147,7 +147,7 @@ public class SlotsMachines {
 		System.out.println("Introdueix l'ID de la màquina que vols modificar:");
 		search_id = sc.nextLine();
 		try {
-			findMaquina(search_id).dialogModifica();
+			findMaquina(search_id).dialogModifica(sc);
 		}catch (NullPointerException e) {
 			System.out.println("No s'ha trobat la màquina en els slots");
 		}

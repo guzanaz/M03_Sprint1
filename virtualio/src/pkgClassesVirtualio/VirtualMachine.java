@@ -235,20 +235,19 @@ public class VirtualMachine {
 		return novaMV;
 	}
 
-	public void dialogModifica() {
-		this.vm_id = prompInputDefault("ID:", vm_id);
-		this.user = prompInputDefault("Usuari:", user);
-		this.name = prompInputDefault("Nom:", name);
-		this.os = prompInputDefault("Sistema operatiu:", os);
-		this.os_version = prompInputDefault("Versió SO:", os_version);
-		this.ram_size = prompInputDefault("RAM:", ram_size);
-		this.ssd_size = prompInputDefault("SSD:", ssd_size);
-		this.description = prompInputDefault("Descripció:", description);
-		this.power_on = reverseState(prompInputDefault("Estat:", state()));		
+	public void dialogModifica(Scanner sc) {
+		this.vm_id = prompInputDefault("ID:", vm_id, sc);
+		this.user = prompInputDefault("Usuari:", user, sc);
+		this.name = prompInputDefault("Nom:", name, sc);
+		this.os = prompInputDefault("Sistema operatiu:", os, sc);
+		this.os_version = prompInputDefault("Versió SO:", os_version, sc);
+		this.ram_size = prompInputDefault("RAM:", ram_size, sc);
+		this.ssd_size = prompInputDefault("SSD:", ssd_size, sc);
+		this.description = prompInputDefault("Descripció:", description, sc);
+		this.power_on = reverseState(prompInputDefault("Estat:", state(), sc), power_on);		
 	}
 
-	private static String prompInputDefault(String prompt, String sDefault) {
-		  Scanner sc = new Scanner(System.in);
+	private static String prompInputDefault(String prompt, String sDefault, Scanner sc) {
 		  String prmpt = prompt + " (Presiona enter per deixar-ho com \"" + sDefault + "\"):";
 		  String tmpch = null;
 		  System.out.print(prmpt);
@@ -261,11 +260,14 @@ public class VirtualMachine {
 		  
 	}
 	
-	private static boolean reverseState(String state) {
-		if (state.equals("true")){
+	private static boolean reverseState(String state, boolean bDefault) {
+		if (state.equals("running")){
 			return true;
-		}else {
+		}else if((state.equals("stopped"))){
 			return false;
+		}else {
+			System.out.println("El valor introduit no correspon a cap estat vàlid (running/stopped). L'estat no es modificarà.");
+			return bDefault;
 		}
 	}
 }
